@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { RenderManager } from "./RenderManager";
+import { useCookies } from 'react-cookie';
 
-function App() {
+
+function WadoApp() {
+
+  const [auth , setLogin] = useCookies(['loggedIn']);
+  const [user , setUsername] = useCookies(['username']);
+  const [auth_unique , setId] = useCookies(['id']);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RenderManager loggedIn={auth.loggedIn} setLogin={setLogin} username={user.username} setUsername={setUsername} id={auth_unique.id} setId={setId}/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default WadoApp;
